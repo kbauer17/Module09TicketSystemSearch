@@ -174,7 +174,61 @@ do
     
   } else if (choice == "3")
   {
+    // Ask which keyword search to perform
+    Console.WriteLine("Select which keyword search to perform:");
+    Console.WriteLine("1) Search by Status");
+    Console.WriteLine("2) Search by Priority");
+    Console.WriteLine("3) Search by Submitter");
 
+    // input selection
+    chosenSubClass = Console.ReadLine();
+    logger.Info("User choice: {chosenSubClass}\n", chosenSubClass);
+
+    // Searches
+    switch(chosenSubClass){
+      case "1": // Search by Status
+        // ask for which status
+        Console.WriteLine("Which status? (Open/Closed): ");
+        var status = Console.ReadLine();
+
+        // LINQ - Where filter operator & Contains quantifier operator:  help tickets
+        var helpTicketsByStatus = ticketFile.Tickets.Where(t => t.status.Contains(status, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"There are {helpTicketsByStatus.Count()} Help Tickets with {status} status:");
+
+        foreach(Ticket t in helpTicketsByStatus)
+        {
+            Console.WriteLine(t.Display());
+        }
+
+        // LINQ - Where filter operator & Contains quantifier operator:  enhancement tickets
+        var enhanceTicketsByStatus = enhancementFile.Enhancements.Where(en => en.status.Contains(status, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"There are {enhanceTicketsByStatus.Count()} Enhancement Tickets with {status} status:");
+
+        foreach(Enhancement en in enhanceTicketsByStatus)
+        {
+            Console.WriteLine(en.Display());
+        }       
+
+        // LINQ - Where filter operator & Contains quantifier operator:  task tickets
+        var taskTicketsByStatus = taskFile.Tasks.Where(ta => ta.status.Contains(status, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"There are {taskTicketsByStatus.Count()} Task Tickets with {status} status:");
+
+        foreach(Task ta in taskTicketsByStatus)
+        {
+            Console.WriteLine(ta.Display());
+        }      
+
+        break;
+      case "2": // Search by Priority
+        
+        break;
+      case "3": // Search by Submitter
+                
+        break;
+    }
   }
 
 } while (choice == "1" || choice == "2" || choice == "3");
