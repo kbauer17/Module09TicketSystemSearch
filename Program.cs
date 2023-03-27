@@ -24,6 +24,7 @@ do
   // display choices to user
   Console.WriteLine("1) Add Item");
   Console.WriteLine("2) Display All Items");
+  Console.WriteLine("3) Search Items");
   Console.WriteLine("Enter to quit");
 
   // input selection
@@ -171,9 +172,12 @@ do
     }
 
     
+  } else if (choice == "3")
+  {
+
   }
 
-} while (choice == "1" || choice == "2");
+} while (choice == "1" || choice == "2" || choice == "3");
 
 
 logger.Info("Program ended");
