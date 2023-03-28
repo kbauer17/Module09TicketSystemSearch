@@ -175,10 +175,7 @@ do
   } else if (choice == "3")
   {
     // Ask which keyword search to perform
-    Console.WriteLine("Select which keyword search to perform:");
-    Console.WriteLine("1) Search by Status");
-    Console.WriteLine("2) Search by Priority");
-    Console.WriteLine("3) Search by Submitter");
+    Console.WriteLine("Select which keyword search to perform:\n1) Search by Status\n2) Search by Priority\n3) Search by Submitter");
 
     // input selection
     chosenSubClass = Console.ReadLine();
@@ -191,41 +188,121 @@ do
         Console.WriteLine("Which status? (Open/Closed): ");
         var status = Console.ReadLine();
 
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        
         // LINQ - Where filter operator & Contains quantifier operator:  help tickets
         var helpTicketsByStatus = ticketFile.Tickets.Where(t => t.status.Contains(status, StringComparison.OrdinalIgnoreCase));
         // LINQ - Count aggregation method
-        Console.WriteLine($"There are {helpTicketsByStatus.Count()} Help Tickets with {status} status:");
+        Console.WriteLine($"\nThere are {helpTicketsByStatus.Count()} Help Tickets with {status} status:");
 
         foreach(Ticket t in helpTicketsByStatus)
         {
             Console.WriteLine(t.Display());
         }
-
+        
         // LINQ - Where filter operator & Contains quantifier operator:  enhancement tickets
         var enhanceTicketsByStatus = enhancementFile.Enhancements.Where(en => en.status.Contains(status, StringComparison.OrdinalIgnoreCase));
         // LINQ - Count aggregation method
-        Console.WriteLine($"There are {enhanceTicketsByStatus.Count()} Enhancement Tickets with {status} status:");
+        Console.WriteLine($"\nThere are {enhanceTicketsByStatus.Count()} Enhancement Tickets with {status} status:");
 
         foreach(Enhancement en in enhanceTicketsByStatus)
         {
             Console.WriteLine(en.Display());
-        }       
+        }
 
         // LINQ - Where filter operator & Contains quantifier operator:  task tickets
         var taskTicketsByStatus = taskFile.Tasks.Where(ta => ta.status.Contains(status, StringComparison.OrdinalIgnoreCase));
         // LINQ - Count aggregation method
-        Console.WriteLine($"There are {taskTicketsByStatus.Count()} Task Tickets with {status} status:");
+        Console.WriteLine($"\nThere are {taskTicketsByStatus.Count()} Task Tickets with {status} status:");
 
         foreach(Task ta in taskTicketsByStatus)
         {
             Console.WriteLine(ta.Display());
-        }      
+        }
+
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.White;
 
         break;
       case "2": // Search by Priority
+        // ask for the desired priority
+        Console.WriteLine("Enter priority (High/Low): ");
+        var priority = Console.ReadLine();
+
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         
+        // LINQ - Where filter operator & Contains quantifier operator:  help tickets
+        var helpTicketsByPriority = ticketFile.Tickets.Where(t => t.priority.Contains(priority, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {helpTicketsByPriority.Count()} Help Tickets with priority of {priority}:");
+
+        foreach(Ticket t in helpTicketsByPriority)
+        {
+            Console.WriteLine(t.Display());
+        }
+                
+        // LINQ - Where filter operator & Contains quantifier operator:  enhancement tickets
+        var enhanceTicketsByPriority = enhancementFile.Enhancements.Where(en => en.priority.Contains(priority, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {enhanceTicketsByPriority.Count()} Enhancement Tickets with priority of {priority}:");
+
+        foreach(Enhancement en in enhanceTicketsByPriority)
+        {
+            Console.WriteLine(en.Display());
+        }
+                
+        // LINQ - Where filter operator & Contains quantifier operator:  task tickets
+        var taskTicketsByPriority = taskFile.Tasks.Where(ta => ta.priority.Contains(priority, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {taskTicketsByPriority.Count()} Task Tickets with priority of {priority}:");
+
+        foreach(Task ta in taskTicketsByPriority)
+        {
+            Console.WriteLine(ta.Display());
+        }
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.White;
+
         break;
       case "3": // Search by Submitter
+        // ask for the desired submitter
+        Console.WriteLine("Enter name of submitter: ");
+        var submitter = Console.ReadLine();
+
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        
+        // LINQ - Where filter operator & Contains quantifier operator:  help tickets
+        var helpTicketsBySubmitter = ticketFile.Tickets.Where(t => t.submitter.Contains(submitter, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {helpTicketsBySubmitter.Count()} Help Tickets with submitter of {submitter}:");
+
+        foreach(Ticket t in helpTicketsBySubmitter)
+        {
+            Console.WriteLine(t.Display());
+        }
+                
+        // LINQ - Where filter operator & Contains quantifier operator:  enhancement tickets
+        var enhanceTicketsBySubmitter = enhancementFile.Enhancements.Where(en => en.submitter.Contains(submitter, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {enhanceTicketsBySubmitter.Count()} Enhancement Tickets with submitter of {submitter}:");
+
+        foreach(Enhancement en in enhanceTicketsBySubmitter)
+        {
+            Console.WriteLine(en.Display());
+        }
+                
+        // LINQ - Where filter operator & Contains quantifier operator:  task tickets
+        var taskTicketsBySubmitter = taskFile.Tasks.Where(ta => ta.submitter.Contains(submitter, StringComparison.OrdinalIgnoreCase));
+        // LINQ - Count aggregation method
+        Console.WriteLine($"\nThere are {taskTicketsBySubmitter.Count()} Task Tickets with submitter of {submitter}:");
+
+        foreach(Task ta in taskTicketsBySubmitter)
+        {
+            Console.WriteLine(ta.Display());
+        }
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.White;
+
                 
         break;
     }
